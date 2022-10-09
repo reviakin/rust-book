@@ -24,6 +24,15 @@ fn main() {
 
     let (s7, len) = calculate_length(s6);
     println!("{s7} has length: {len}");
+    let l1 = calculate_length_reference(&s7);
+    println!("{s7}} has length {l1}");
+
+    change_string_ref(&mut s7);
+}
+
+// &mut allow us to mutate a value reference
+fn change_string_ref(s: &mut String) {
+    s.push_str("string");
 }
 
 fn calculate_length(some_string: String) -> String {
@@ -44,4 +53,10 @@ fn gives_ownership() -> String {
 fn takes_and_gives_ownership(some_string: String) -> String {
     println!(some_string);
     some_string
+}
+
+// The function use a reference instead of a variable and
+// void ownership, drop flow
+fn calculate_length_reference(s: &String) -> usize {
+    s.len()
 }
